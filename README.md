@@ -1,1 +1,1 @@
-# 8-puzzle-c-
+# 8-puzzle
