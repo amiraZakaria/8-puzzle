@@ -50,12 +50,12 @@ bool check_valid_num(int a) {
 
 
 //This function generates pac man
-int generate_number() {
+/*int generate_number() {
     srand( (unsigned)time( NULL ) );
     int f=pow(N,2);
-    int a = rand() % f ;
+    int a = rand() % f +1;
     return a;
-}
+}*/
 
 //This function checks if given position is valid or not
 bool check_available_move(int i,int a,int b) {
@@ -89,19 +89,42 @@ void move(int i,int &a,int &b) {
  else if (i==4){  grid[a][b]=grid[a][b+1]; grid[a][b+1]=0 ;b+=1;}  }   //left
 
 //This function clears the game structures
-void grid_clear(int &x ,int &y) {
-        cout<<5;
-        int a = generate_number();
+void grid_clear() {
+
+       for (int i =0 ; i<N; i++){
+            for (int j =0 ; j<N; j++){
+                   grid[i][j]=0;
+
+
+
+            }}}
+void set_cell(int &x ,int &y) {
+
+        //grid[0][0]=
+        srand( (unsigned)time( NULL ) );
+        int f=pow(N,2);
+         int a = rand() % f +1;
+
         for (int i =0 ; i<N; i++){
             for (int j =0 ; j<N; j++){
-                while (!check_valid_num(a))
-                {
-                    a=generate_number();
+                   int a = rand() % f +1;                    //generate_number();
+
+
+                   cout<<a;
+                while (true)
+                {  if(!check_valid_num(a)){
+                    a = rand() % f +1;
+
+                    cout<<a;}
+                    else {break;}
                 }
-                if (a==0){
+
+                if (a==9){
                      x=i; y=j;
+                     grid[i][j]=0;
                 }
-                grid[i][j]=a;
+                else{
+                grid[i][j]=a; }
             }
         }
 }
@@ -142,11 +165,13 @@ void play_game(int &a,int &b) {
 int main() {
     while (true) {
         int a,b;
-        cout<<1;
-    	grid_clear(a,b);
-    	cout<<2;
+
+    	grid_clear();
+    	set_cell(a,b);
+
+
     	play_game(a,b);
-    	cout<<3;
+
     	char c;
     	cout << "Play Again [Y/N] ";
     	cin >> c;
